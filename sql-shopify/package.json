@@ -1,0 +1,40 @@
+{
+  "name": "shopify-sql",
+  "version": "1.0.0",
+  "description": "shopify db",
+  "main": "index.js",
+  "scripts": {
+    "test-pattern": "jest --env=node --colors --verbose=true",
+    "test-csv": "npm run test-pattern ./data/shopify-csv-loader*",
+    "test-00": "npm run test-pattern 00-*",
+    "test-01": "npm run test-pattern 01-*",
+    "test-02": "npm run test-pattern 02-*",
+    "test-03": "npm run test-pattern 03-*",
+    "test-04": "npm run test-pattern 04-*",
+    "test-05": "npm run test-pattern 05-*",
+    "test-06": "npm run test-pattern 06-*",
+    "prettier": "prettier --write './{src,test}/**/*.ts'"
+  },
+  "author": "RudolfsLogins",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/lodash": "^4.14.141",
+    "@types/sqlite3": "^3.1.5",
+    "chalk": "^2.4.2",
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "jest-serial-runner": "^1.1.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prettier": "^1.18.2",
+    "sqlite3": "^4.1.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1"
+  }
+}
