@@ -47,7 +47,7 @@ export const selectMovie = (imdbId: string): string => {
 };
 
 export const selectMovieId = (imdbId: string): string => {
-  return `SELECT id FROM movies WHERE imdb_Id = '${imdbId}'`;
+  return `SELECT * FROM movies WHERE imdb_Id = '${imdbId}'`;
 };
 
 export const selectRatingsByUserID = (userId: number): string => {
