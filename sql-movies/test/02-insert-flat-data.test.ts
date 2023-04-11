@@ -84,7 +84,7 @@ const insertMovies = (movies: Movie[]) => {
       '${escape(movie.tagline? movie.tagline : '')}',
       '${escape(movie.overview)}',
       ${escape(movie.runtime.toString())},
-      ${escape(movie.releaseDate)}
+      '${escape(movie.releaseDate)}'
     )`).join(",")
   );
 };

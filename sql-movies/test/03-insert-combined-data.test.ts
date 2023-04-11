@@ -12,11 +12,7 @@ import { minutes } from "./utils";
 
 const insertRatings = (movieId: number, ratings: Rating[]) => {
   return (
-    `insert into movie_ratings (
-      user_id,
-      movie_id,
-      rating,
-      time_created) values` +
+    `insert into ${MOVIE_RATINGS} values` +
     ratings.map(rating => `(
       ${rating.userId.toString()}, 
       ${movieId},
