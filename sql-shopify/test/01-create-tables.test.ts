@@ -33,14 +33,20 @@ const CREATE_CATEGORIES_TABLE = `CREATE TABLE ${CATEGORIES} (
 const CREATE_APPS_CATEGORIES_TABLE = `CREATE TABLE ${APPS_CATEGORIES} (
     app_id integer NOT NULL,
     category_id integer NOT NULL,
-    PRIMARY KEY (app_id, category_id)
+    PRIMARY KEY (app_id, category_id),
+    FOREIGN KEY (app_id) REFERENCES ${APPS} (id) 
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES ${CATEGORIES} (id) 
+    ON UPDATE NO ACTION ON DELETE CASCADE
   )`;
 
 const CREATE_KEY_BENEFITS_TABLE = `CREATE TABLE ${KEY_BENEFITS} (
     app_id integer NOT NULL,
     title text NOT NULL,
     description text NOT NULL,
-    PRIMARY KEY (app_id, title)
+    PRIMARY KEY (app_id, title),
+    FOREIGN KEY (app_id) REFERENCES ${APPS} (id) 
+    ON UPDATE NO ACTION ON DELETE CASCADE
   )`;
 
 const CREATE_PRICING_PLANS_TABLE = `CREATE TABLE ${PRICING_PLANS} (
@@ -51,7 +57,11 @@ const CREATE_PRICING_PLANS_TABLE = `CREATE TABLE ${PRICING_PLANS} (
 const CREATE_APPS_PRICING_PLANS_TABLE = `CREATE TABLE ${APPS_PRICING_PLANS} (
     app_id integer NOT NULL,
     pricing_plan_id integer NOT NULL,
-    PRIMARY KEY (app_id, pricing_plan_id)
+    PRIMARY KEY (app_id, pricing_plan_id),
+    FOREIGN KEY (app_id) REFERENCES ${APPS} (id) 
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+    FOREIGN KEY (pricing_plan_id) REFERENCES ${PRICING_PLANS} (id) 
+    ON UPDATE NO ACTION ON DELETE CASCADE
   )`;
 
 const CREATE_REVIEWS_TABLE = `CREATE TABLE ${REVIEWS} (
@@ -62,7 +72,9 @@ const CREATE_REVIEWS_TABLE = `CREATE TABLE ${REVIEWS} (
     helpful_count integer NOT NULL,
     date_created text NOT NULL,
     developer_reply text,
-    developer_reply_date text
+    developer_reply_date text,
+    FOREIGN KEY (app_id) REFERENCES ${APPS} (id) 
+    ON UPDATE NO ACTION ON DELETE CASCADE
   )`;
 
 const CREATE_INDEX_REVIEWS_AUTHOR = `CREATE INDEX reviews_author_idx ON ${REVIEWS} (author)`;

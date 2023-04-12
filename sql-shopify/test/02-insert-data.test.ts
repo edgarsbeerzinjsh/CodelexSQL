@@ -17,7 +17,17 @@ const pricingPlansDir = resolve(__dirname, "../_data/pricing_plans.csv");
 
 const insertApps = (apps: App[]) => {
     return (
-        `todo` + 
+        `insert into ${APPS} (
+            url,
+            title,
+            tagline,
+            developer,
+            developer_link,
+            icon,
+            rating,
+            reviews_count,
+            description,
+            pricing_hint) values` + 
         apps.map(app => `('${app.url}',
             '${escape(app.title)}',
             '${escape(app.tagline)}',
@@ -33,14 +43,16 @@ const insertApps = (apps: App[]) => {
 
 const insertCategories = (categories: Category[]) => {
     return (
-        `todo` + 
+        `insert into ${CATEGORIES} (title) values` + 
         categories.map(category => `('${category.title}')`).join(",")
     );
 };
 
 const insertAppCategories = (appCategories: AppCategory[]) => {
     return (
-        `todo` + 
+        `insert into ${APPS_CATEGORIES} (
+            app_id,
+            category_id) values` + 
         appCategories.map(appCategory => 
             `('${appCategory.shopifyAppId}',
             '${appCategory.categoryId}')`).join(",")
@@ -49,7 +61,10 @@ const insertAppCategories = (appCategories: AppCategory[]) => {
 
 const insertKeyBenefits = (keyBenefits: KeyBenefit[]) => {
     return (
-        `todo` + 
+        `insert into ${KEY_BENEFITS} (
+            app_id,
+            title,
+            description) values` + 
         keyBenefits.map(keyBenefit => 
             `('${keyBenefit.shopifyAppId}',
             '${escape(keyBenefit.title)}',
@@ -59,7 +74,7 @@ const insertKeyBenefits = (keyBenefits: KeyBenefit[]) => {
 
 const insertPricingPlans = (pricingPlans: string[]) => {
     return (
-        `todo` + 
+        `insert into ${PRICING_PLANS} (price) values` + 
         pricingPlans.map(pricingPlan => 
             `('${pricingPlan}')`).join(",")
     );
@@ -67,7 +82,15 @@ const insertPricingPlans = (pricingPlans: string[]) => {
 
 const insertReviews = (reviews: Review[]) => {
     return (
-        `todo`+ 
+        `insert into ${REVIEWS} (
+            app_id,
+            author,
+            body,
+            rating,
+            helpful_count,
+            date_created,
+            developer_reply,
+            developer_reply_date) values`+ 
             reviews.map(review => `(
                 ${review.shopifyAppId},
                 '${escape(review.author)}',
@@ -82,7 +105,9 @@ const insertReviews = (reviews: Review[]) => {
 
 const insertAppPricingPlans = (pricingPlans: PricingPlan[], prices: PricingPlanPrice[]) => {
     return (
-        `todo` + 
+        `insert into ${APPS_PRICING_PLANS} (
+            app_id,
+            pricing_plan_id) values` + 
         pricingPlans.map(pricingPlan => 
             `('${pricingPlan.shopifyAppId}', '${prices.find(it => it.price === pricingPlan.price)!.id}')
             `).join(",")
@@ -199,7 +224,7 @@ describe("Insert Data", () => {
 
     it("should insert apps pricing plans data", async done => {
         const pricePlans = await ShopifyCsvLoader.pricingPlans();
-        const prices = (await db.selectMultipleRows(`todo`)) as PricingPlanPrice[];
+        const prices = (await db.selectMultipleRows(`select * from pricing_plans`)) as PricingPlanPrice[];
         
         const chunks = _.chunk(pricePlans, 500);
         for (const ch of chunks){
