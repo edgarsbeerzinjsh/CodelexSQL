@@ -13,31 +13,51 @@ import { minutes, Log } from "./utils";
 const CREATE_MOVIE_GENRES_TABLE = `CREATE TABLE ${MOVIE_GENRES} (
   movie_id integer NOT NULL,
   genre_id integer NOT NULL,
-  PRIMARY KEY (movie_id, genre_id)
+  PRIMARY KEY (movie_id, genre_id),
+  FOREIGN KEY (movie_id) REFERENCES movies (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE,
+  FOREIGN KEY (genre_id) REFERENCES genres (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE
 )`;
 
 const CREATE_MOVIE_ACTORS_TABLE = `CREATE TABLE ${MOVIE_ACTORS} (
   movie_id integer NOT NULL,
   actor_id integer NOT NULL,
-  PRIMARY KEY (movie_id, actor_id)
+  PRIMARY KEY (movie_id, actor_id),
+  FOREIGN KEY (movie_id) REFERENCES movies (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE,
+  FOREIGN KEY (actor_id) REFERENCES actors (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE
 )`;
 
 const CREATE_MOVIE_DIRECTORS_TABLE = `CREATE TABLE ${MOVIE_DIRECTORS} (
   movie_id integer NOT NULL,
   director_id integer NOT NULL,
-  PRIMARY KEY (movie_id, director_id)
+  PRIMARY KEY (movie_id, director_id),
+  FOREIGN KEY (movie_id) REFERENCES movies (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE,
+  FOREIGN KEY (director_id) REFERENCES directors (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE
 )`;
 
 const CREATE_MOVIE_KEYWORDS_TABLE = `CREATE TABLE ${MOVIE_KEYWORDS} (
   movie_id integer NOT NULL,
   keyword_id integer NOT NULL,
-  PRIMARY KEY (movie_id, keyword_id)
+  PRIMARY KEY (movie_id, keyword_id),
+  FOREIGN KEY (movie_id) REFERENCES movies (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE,
+  FOREIGN KEY (keyword_id) REFERENCES keywords (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE
 )`;
 
 const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = `CREATE TABLE ${MOVIE_PRODUCTION_COMPANIES} (
   movie_id integer NOT NULL,
   company_id integer NOT NULL,
-  PRIMARY KEY (movie_id, company_id)
+  PRIMARY KEY (movie_id, company_id),
+  FOREIGN KEY (movie_id) REFERENCES movies (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE,
+  FOREIGN KEY (company_id) REFERENCES production_companies (id) 
+  ON UPDATE NO ACTION ON DELETE CASCADE
 )`;
 
 describe("Insert Combined Data", () => {
