@@ -22,15 +22,15 @@
     "@types/jest": "24.0.18",
     "@types/lodash": "4.14.138",
     "@types/sqlite3": "3.1.5",
+    "chalk": "^2.4.2",
     "csvtojson": "2.0.10",
     "jest": "24.9.0",
-    "jest-serial-runner": "1.1.0",
-    "lodash": "4.17.15",
-    "moment": "2.24.0",
+    "jest-serial-runner": "^1.2.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "prettier": "1.18.2",
-    "sqlite3": "4.1.0",
+    "sqlite3": "^4.1.1",
     "ts-jest": "24.0.2",
-    "typescript": "3.6.2",
-    "chalk": "^2.4.2"
+    "typescript": "3.6.2"
   }
 }
