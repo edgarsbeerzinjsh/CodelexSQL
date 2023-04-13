@@ -14,7 +14,7 @@ describe("Foreign Keys", () => {
 
     it("should not be able to delete category if any app is linked", async done => {
         const categoryId = 6;
-        const query = `todo`;
+        const query = `delete from ${CATEGORIES} where id = ${categoryId}`;
         try {
             await db.delete(query);
           } catch (e) {}
@@ -27,7 +27,7 @@ describe("Foreign Keys", () => {
 
     it("should not be able to delete pricing plan if any app is linked", async done => {
         const pricingPlanId = 100;
-        const query = `todo`;
+        const query = `delete from ${PRICING_PLANS} where id = ${pricingPlanId}`;
 
         try {
             await db.delete(query);
@@ -41,7 +41,7 @@ describe("Foreign Keys", () => {
 
     it("should not be able to delete app if any data is linked", async done => {
         const appId = 245;
-        const query = `todo`;
+        const query = `delete from ${APPS} where id = ${appId}`;
 
         try {
             await db.delete(query);
@@ -55,7 +55,7 @@ describe("Foreign Keys", () => {
 
     it("should be able to delete app", async done => {
         const appId = 355;
-        const query = `todo`;
+        const query = `delete from ${APPS} where id = ${appId}`;
         try {
             await db.delete(query);
           } catch (e) {}
